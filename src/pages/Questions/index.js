@@ -25,6 +25,7 @@ function shuffle(array) {
 class Questions extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       data: [],
       activeQuestionIndex: 0,
@@ -51,6 +52,9 @@ class Questions extends Component {
         score: this.props.location.state.score
       });
     }
+    this.timer = setInterval(this.startTimer, 2000);
+
+    console.log(this.timer);
   }
   render() {
     const { data, activeQuestionIndex } = this.state;
@@ -79,7 +83,7 @@ class Questions extends Component {
             </div>
             <div>{data[activeQuestionIndex].question}</div>
           </div>
-          <div>{this.state.time}</div>
+          <div>Remaing Time: {this.state.time}</div>
         </div>
 
         {answersRandoms.map(ans => {
@@ -97,6 +101,19 @@ class Questions extends Component {
       </Container>
     );
   }
+
+  startTimer = () => {
+    if (this.state.time > 0) {
+      this.setState({ time: this.state.time - 1 });
+    } else {
+      if (this.state.time === 0) {
+        this.props.history.push("/");
+        alert("süreniz bitti");
+        clearInterval(this.timer);
+        window.location.reload();
+      }
+    }
+  };
 
   onClick(answer) {
     const { activeQuestionIndex, data, score } = this.state;
