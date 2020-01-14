@@ -1,0 +1,121 @@
+.clickable {
+  cursor: pointer;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+.app {
+  width: 100%;
+  height: 100%;
+}
+
+.btn {
+  position: relative;
+  color: white;
+  width: 256px;
+  height: 64px;
+  line-height: 64px;
+  transition: all 0.3s;
+}
+
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  transition: all 0.3s;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  color: white;
+}
+
+.btn-one::before {
+  /* left: 4px; */
+  /* z-index: 1; */
+
+  color: white;
+  /* opacity: 0; */
+  /* background-color: green; */
+  transform: scale(0.1, 1);
+}
+
+.btn-one:hover {
+  color: white !important;
+  background-color: green;
+}
+.btn-one:hover::before {
+  opacity: 1;
+  transform: scale(1, 1);
+  color: white;
+}
+
+.btn-one::after {
+  transition: all 0.3s;
+  color: white;
+  border: 2px solid rgb(246, 143, 7);
+}
+
+.btn-one:hover::after {
+  transform: scale(1, 0.1);
+  opacity: 0;
+  color: white;
+}
+
+/* BTN TWO */
+.btn-two::before,
+.btn-two::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-two:hover::after {
+  animation-name: rotatecw;
+  animation-duration: 2s;
+}
+.btn-two:hover::before {
+  animation-name: rotateccw;
+  animation-duration: 3s;
+}
+.btn-two:hover::after,
+.btn-two:hover::before {
+  left: 96px;
+  width: 64px;
+
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotatecw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateccw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}

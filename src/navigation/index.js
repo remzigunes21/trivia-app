@@ -1,21 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Home from "../pages/Home";
+import Welcome from "../pages/Welcome";
 import Correct from "../components/AnswerCorrect";
-import Questions from "../pages/Questions";
-import TimesUp from "../pages/TimesUp";
+import Dashboard from "../pages/Dashboard";
+import Result from "../pages/Result";
 
 const Routers = () => {
   return (
-    <div className="container" style={{ marginTop: "10px" }}>
+    <div className="app">
       <Router>
-        <div>
+        <div className="app">
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/result" exact component={Correct} />
-            <Route path="/questions" exact component={Questions} />
-            <Route path="/times-up" exact component={TimesUp} />
+            <Route path="/" exact component={Welcome} />
+            <Route path="/dashboard" exact component={Dashboard} />
+            <Route path="/result" exact component={Result} />
+            {/*   <Route path="/questions" exact component={Questions} />
+            <Route path="/times-up" exact component={TimesUp} /> */}
             {/* <Route path="/answer" exact component={StreamsCreate} />
             <Route path="/streams/edit/:id" exact component={StreamsEdit} />
             <Route path="/streams/delete/:id" exact component={StreamsDelete} />
