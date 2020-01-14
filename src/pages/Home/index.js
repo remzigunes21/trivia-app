@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Questions from "../Questions";
 import { Container, Row, Col, Spinner } from "reactstrap";
-import { Link } from "react-router-dom";
+import StartLottie from "../../assets/game.json";
 import TgButton from "../../components/Button";
+import Lottie from "react-lottie";
 
 class Home extends Component {
   constructor(props) {
@@ -21,70 +22,71 @@ class Home extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    alert(`You chose the ${this.state.difficulty} pizza.`);
   }
   render() {
+    const defaultOptions = {
+      loop: true,
+      autoplay: true,
+      animationData: StartLottie
+    };
     return (
-      <Container fluid>
-        {/* <Questions {...this.props} /> */}
+      <Container className="container-home" fluid>
+        <div
+          className="title"
+          style={{ backgroundColor: "#00ced1", borderRadius: 5 }}
+        >
+          <h1 className="game-title">A trivia game</h1>
+        </div>
         <Row>
           <Col>
-            <img
-              src="NoFav.svg"
-              alt="A Rectangle Image with SVG"
-              height="300px"
-              width="300px"
-            />
-            <Col>
-              <div className="title">
-                <h1>A trivia game</h1>
-              </div>
-              <div className="md-10">
-                <div>
-                  <form onSubmit={this.handleSubmit}>
-                    <div className="radio">
-                      <label>
-                        <input
-                          type="radio"
-                          value="easy"
-                          checked={this.state.difficulty === "easy"}
-                          onChange={this.handleChange}
-                        />
-                        easy
-                      </label>
-                    </div>
-                    <div className="radio">
-                      <label>
-                        <input
-                          type="radio"
-                          value="medium"
-                          checked={this.state.difficulty === "medium"}
-                          onChange={this.handleChange}
-                        />
-                        medium
-                      </label>
-                    </div>
-                    <div className="radio">
-                      <label>
-                        <input
-                          type="radio"
-                          value="hard"
-                          checked={this.state.difficulty === "hard"}
-                          onChange={this.handleChange}
-                        />
-                        hard
-                      </label>
-                    </div>
-                    <TgButton
-                      type="submit"
-                      className="btn  submit-button"
-                      onClick={this.onClick}
-                      text=" GET STARTED"
-                      color="success"
+            <Lottie options={defaultOptions} height={200} width={300} />
+            <Col className="home">
+              <form className="formElements" onSubmit={this.handleSubmit}>
+                <div className="radio">
+                  <label style={{ margin: 5, padding: 5, fontSize: 18 }}>
+                    <input
+                      type="radio"
+                      value="easy"
+                      checked={this.state.difficulty === "easy"}
+                      onChange={this.handleChange}
+                      style={{ marginRight: 5 }}
                     />
-                  </form>
+                    easy
+                  </label>
                 </div>
-              </div>
+                <div className="radio">
+                  <label style={{ margin: 5, padding: 5, fontSize: 18 }}>
+                    <input
+                      type="radio"
+                      value="medium"
+                      checked={this.state.difficulty === "medium"}
+                      onChange={this.handleChange}
+                      style={{ marginRight: 5 }}
+                    />
+                    medium
+                  </label>
+                </div>
+                <div className="radio">
+                  <label style={{ margin: 5, padding: 5, fontSize: 18 }}>
+                    <input
+                      type="radio"
+                      value="hard"
+                      checked={this.state.difficulty === "hard"}
+                      onChange={this.handleChange}
+                      style={{ marginRight: 5 }}
+                    />
+                    hard
+                  </label>
+                </div>
+
+                <TgButton
+                  type="submit"
+                  className="btn  submit-button"
+                  onClick={this.onClick}
+                  text=" GET STARTED"
+                  color="success"
+                />
+              </form>
             </Col>
           </Col>
         </Row>

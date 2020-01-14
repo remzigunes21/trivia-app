@@ -4,11 +4,35 @@
   align-items: center;
 }
 
-.form {
-  max-width: 185px;
-  background-color: #fff;
-  margin: 0 auto;
-  padding: 20px;
+.container-home {
+  background-color: khaki;
+  padding: 5px;
+  margin: 5px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.home {
+  background-color: aqua;
+  display: contents;
+  justify-content: center;
+  align-items: center;
+}
+.game-title {
+  font-size: 2.5rem;
+  margin: 5px;
+  padding: 10px;
+  text-align: center;
+  color: brown;
+}
+
+.radio {
+  background-color: #39afcc;
+  margin: 5px;
+
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
 }
 
 button {

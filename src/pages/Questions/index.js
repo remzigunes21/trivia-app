@@ -1,7 +1,21 @@
 import React, { Component } from "react";
 import "../../appCss/index.css";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import TgButton from "../../components/Button";
+
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  ListGroup,
+  ListGroupItem,
+  NavbarText
+} from "reactstrap";
+
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue,
@@ -138,28 +152,30 @@ class Questions extends Component {
 
     return (
       <Container fluid>
-        <div className="row">
-          <div className="col">
-            <div className="row">
-              <div>
-                <h3 className="header3"> Question:</h3>{" "}
-                <p>{activeQuestionIndex + 1 + " / " + data.length}</p>
-              </div>
-              <div>
-                <h3 className="header3"> Puan :</h3>
-                <p className="pHeader">{this.state.score}</p>
-              </div>
-            </div>
-            <div>
-              <h4>{data[activeQuestionIndex].question}</h4>
-            </div>
-          </div>
-          <div>
-            <p>
-              <h3>Remaing Time:</h3> {this.state.time}
-            </p>
-          </div>
-        </div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">
+            Question: {activeQuestionIndex + 1 + " / " + data.length}
+          </NavbarBrand>
+          <NavbarToggler onClick={null} />
+          <Collapse navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <NavLink></NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink>Puan :{this.state.score}</NavLink>
+              </NavItem>
+            </Nav>
+            <NavbarText>Remaing Time:{this.state.time}</NavbarText>
+          </Collapse>
+          <Button color="primary" className="btn" onClick={this.onClickJoker}>
+            %50 joker
+          </Button>
+        </Navbar>
+
+        <ListGroup>
+          <ListGroupItem>{data[activeQuestionIndex].question}</ListGroupItem>
+        </ListGroup>
 
         {answersRandoms.map(ans => {
           return (
@@ -173,26 +189,19 @@ class Questions extends Component {
             </div>
           );
         })}
-        <div>
-          <TgButton
-            text="%50 joker"
-            color="primary"
-            className="btn"
-            onClick={this.onClickJoker}
-          />
-        </div>
+        <div></div>
       </Container>
     );
   }
 
-  startTimer = () => {
-    if (this.state.time > 0) {
-      this.setState({ time: this.state.time - 1 });
-    } else {
-      clearInterval(this.timer);
-      this.props.history.push("/times-up");
-    }
-  };
+  // startTimer = () => {
+  //   if (this.state.time > 0) {
+  //     this.setState({ time: this.state.time - 1 });
+  //   } else {
+  //     clearInterval(this.timer);
+  //     this.props.history.push("/times-up");
+  //   }
+  // };
 
   onClick(answer) {
     const { activeQuestionIndex, data, score } = this.state;
