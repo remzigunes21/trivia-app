@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../appCss/index.css";
-import { Button, Container, Row, Col } from "reactstrap";
-import { Redirect } from "react-router-dom";
+import { Container, Row, Col } from "reactstrap";
+import TgButton from "../../components/Button";
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue,
@@ -28,19 +28,34 @@ class Questions extends Component {
 
     this.state = {
       data: [],
+      easyData: [],
+      mediumData: [],
+      hardData: [],
       activeQuestionIndex: 0,
       time: 15,
-      score: 0
+      score: 0,
+      joker: false
     };
   }
 
   componentDidMount() {
-    fetch(
-      "https://opentdb.com/api.php?amount=10&category=19&difficulty=medium&type=multiple"
-    )
-      .then(response => response.json())
-      .then(data => this.setState({ data: data.results }));
+    const { difficulty } = this.props.location.state;
+    if (difficulty) {
+      if (difficulty === "easy") {
+        this.getEasyData();
+      } else if (difficulty === "medium") {
+        this.getMediumData();
+      } else this.getHardData();
+    }
 
+    this.getHistoryState();
+
+    this.timer = setInterval(this.startTimer, 2000);
+  }
+
+  getSelectedQuestions = () => {};
+
+  getHistoryState = () => {
     if (
       this.props.location &&
       this.props.location.state &&
@@ -52,18 +67,74 @@ class Questions extends Component {
         score: this.props.location.state.score
       });
     }
-    this.timer = setInterval(this.startTimer, 2000);
+  };
 
-    console.log(this.timer);
-  }
+  onClickJoker = () => {
+    const { joker, data, activeQuestionIndex } = this.state;
+    let removeElement = [data[activeQuestionIndex].incorrect_answers];
+
+    if (joker === true) {
+      for (let i = removeElement.length - 1; i >= 0; i--) {
+        removeElement.splice(
+          Math.floor(Math.random() * removeElement.length),
+          1
+        );
+        //console.log(array);
+      }
+    }
+  };
+
+  getEasyData = () => {
+    fetch(
+      `https://opentdb.com/api.php?amount=10&category=11&difficulty=easy&type=multiple`
+    )
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          easyData: data.results,
+          answersRandoms: shuffle([
+            data.results[this.state.activeQuestionIndex].correct_answer,
+            ...data.results[this.state.activeQuestionIndex].incorrect_answers
+          ])
+        })
+      );
+  };
+
+  getMediumData = () => {
+    fetch(
+      `https://opentdb.com/api.php?amount=10&category=11&difficulty=medium&type=multiple`
+    )
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          data: data.results,
+          answersRandoms: shuffle([
+            data.results[this.state.activeQuestionIndex].correct_answer,
+            ...data.results[this.state.activeQuestionIndex].incorrect_answers
+          ])
+        })
+      );
+  };
+
+  getHardData = () => {
+    fetch(
+      `https://opentdb.com/api.php?amount=10&category=11&difficulty=hard&type=multiple`
+    )
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          hardData: data.results,
+          answersRandoms: shuffle([
+            data.results[this.state.activeQuestionIndex].correct_answer,
+            ...data.results[this.state.activeQuestionIndex].incorrect_answers
+          ])
+        })
+      );
+  };
+
   render() {
-    const { data, activeQuestionIndex } = this.state;
-    if (!data.length) return null;
-
-    let answersRandoms = shuffle([
-      data[activeQuestionIndex].correct_answer,
-      ...data[activeQuestionIndex].incorrect_answers
-    ]);
+    const { data, activeQuestionIndex, answersRandoms } = this.state;
+    if (!data.length || !answersRandoms) return null;
 
     return (
       <Container fluid>
@@ -71,33 +142,45 @@ class Questions extends Component {
           <div className="col">
             <div className="row">
               <div>
-                Question: {activeQuestionIndex + 1 + " / " + data.length}
+                <h3 className="header3"> Question:</h3>{" "}
+                <p>{activeQuestionIndex + 1 + " / " + data.length}</p>
               </div>
-              <div
-                style={{
-                  marginLeft: 150
-                }}
-              >
-                Puan : {this.state.score}
+              <div>
+                <h3 className="header3"> Puan :</h3>
+                <p className="pHeader">{this.state.score}</p>
               </div>
             </div>
-            <div>{data[activeQuestionIndex].question}</div>
+            <div>
+              <h4>{data[activeQuestionIndex].question}</h4>
+            </div>
           </div>
-          <div>Remaing Time: {this.state.time}</div>
+          <div>
+            <p>
+              <h3>Remaing Time:</h3> {this.state.time}
+            </p>
+          </div>
         </div>
 
         {answersRandoms.map(ans => {
           return (
             <div className="m-4">
-              <Button
-                className="btn btn-primary"
+              <TgButton
+                text={ans}
+                className="btn "
                 onClick={() => this.onClick(ans)}
-              >
-                {ans}
-              </Button>
+                color="warning"
+              />
             </div>
           );
         })}
+        <div>
+          <TgButton
+            text="%50 joker"
+            color="primary"
+            className="btn"
+            onClick={this.onClickJoker}
+          />
+        </div>
       </Container>
     );
   }
@@ -106,12 +189,8 @@ class Questions extends Component {
     if (this.state.time > 0) {
       this.setState({ time: this.state.time - 1 });
     } else {
-      if (this.state.time === 0) {
-        this.props.history.push("/");
-        alert("süreniz bitti");
-        clearInterval(this.timer);
-        window.location.reload();
-      }
+      clearInterval(this.timer);
+      this.props.history.push("/times-up");
     }
   };
 

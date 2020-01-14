@@ -4,11 +4,32 @@
   align-items: center;
 }
 
-.title {
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  font-size: larger;
+.form {
+  max-width: 185px;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-  margin-bottom: 50px;
+button {
+  background-color: transparent;
+  width: 250px;
+  height: 60px;
+  padding: 12px;
+  padding-left: 40px;
+  padding-right: 50px;
+  box-sizing: border-box;
+  font-size: 40px;
+  font-family: "Quicksand", sans-serif;
+  border: 8px transparent;
+}
+
+.btn {
+  border-image: -webkit-linear-gradient(right, #fdc830, #f37335);
+  border-image-slice: -1;
+}
+
+.btn:hover {
+  border: none;
+  border-image: -webkit-linear-gradient(right, #fdc830, #f37335);
 }
