@@ -1,8 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import TrStepper from "../../components/TrStepper";
-import { Container, Row, Col, Spinner } from "reactstrap";
+import { Container, Row } from "reactstrap";
+import { connect } from "react-redux";
 import TrContainer from "../../components/TrContainer";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import BaseComponent from "../BaseComponent";
+import Time from "../../components/Time";
 
 function shuffle(array) {
   var currentIndex = array.length,
@@ -24,26 +26,28 @@ function shuffle(array) {
   return array;
 }
 
-class Dashboard extends Component {
+class Dashboard extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {
+      questions: [],
       data: [],
       answersRandoms: [],
-      score: null,
-      time: 15
+      score: null
     };
   }
 
   componentDidMount() {
+    const { questions } = this.props;
+
+    this.setState({ questions: questions });
+
+    console.log("TCL: Dashboard -> componentDidMount -> questions", questions);
+
     if ([undefined, null].includes(this.props.location.state)) {
       this.props.history.push("/");
     } else {
       const { difficulty, activeQuestionIndex } = this.props.location.state;
-      console.log(
-        "TCL: Dashboard -> componentDidMount -> difficulty",
-        difficulty
-      );
 
       if (difficulty) {
         if (difficulty === 1) {
@@ -54,8 +58,6 @@ class Dashboard extends Component {
       }
 
       this.getHistoryState();
-
-      this.timer = setInterval(this.startTimer, 1000);
     }
   }
 
@@ -125,14 +127,19 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { activeQuestionIndex, data, answersRandoms, score } = this.state;
+    const { activeQuestionIndex, data, answersRandoms } = this.state;
+
+    const { score } = this.props.location.state;
+
+    const { questions } = this.props;
+
     if (!data.length)
       return (
         <div
           style={{ width: "100%", height: "100%", backgroundColor: "#001641" }}
         ></div>
       );
-    console.log("TCL: Dashboard -> render -> data", data);
+
     return (
       <Container fluid style={{ backgroundColor: "#001641" }} className="app">
         <TrStepper activeStep={activeQuestionIndex}></TrStepper>
@@ -159,19 +166,7 @@ class Dashboard extends Component {
               SCORE: {score}
             </div>
 
-            <div
-              className="pl-4 pr-4"
-              style={{
-                backgroundColor: "white",
-                borderRadius: 20,
-                height: 35,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between"
-              }}
-            >
-              Remaing Time : {this.state.time}
-            </div>
+            <Time onRef={ref => (this.timeRef = ref)} />
           </div>
           <Container fluid>
             <Row>
@@ -286,7 +281,10 @@ class Dashboard extends Component {
   }
 
   onClick(answer) {
-    const { activeQuestionIndex, data, score, time } = this.state;
+    const time = this.timeRef.getCurrentTime();
+
+    console.log("TCL: Dashboard -> onClick -> time", time);
+    const { activeQuestionIndex, data, score } = this.state;
     const { difficulty } = this.props.location.state;
 
     this.props.history.push({
@@ -294,21 +292,23 @@ class Dashboard extends Component {
       state: {
         isCorrect: data[activeQuestionIndex].correct_answer === answer,
         activeQuestionIndex: activeQuestionIndex + 1,
-        score: score + 50,
+        score:
+          time >= 13
+            ? score + 100
+            : time >= 8
+            ? score + 75
+            : time >= 5
+            ? score + 50
+            : score,
         difficulty,
         time
       }
     });
   }
-
-  startTimer = () => {
-    if (this.state.time > 0) {
-      this.setState({ time: this.state.time - 1 });
-    } else {
-      clearInterval(this.timer);
-      this.props.history.push("/times-up");
-    }
-  };
 }
 
-export default Dashboard;
+const mapStateToProps = state => ({
+  questions: state.questions.questions
+});
+
+export default connect(mapStateToProps)(Dashboard);

@@ -1,7 +1,11 @@
 import * as $ from "../actionTypes";
 
 const initialState = {
-  questions: []
+  questions: [],
+  activeQuestionIndex: 0,
+  score: 0,
+  time: 15,
+  difficulty: 1
 };
 
 export default (state = initialState, action) => {
@@ -10,7 +14,9 @@ export default (state = initialState, action) => {
   if (type === $.GET_QUESTIONS_SUCCESS) {
     return {
       ...state,
-      questions: payload
+      questions: payload.data,
+
+      difficulty: payload.dificulty
     };
   }
 

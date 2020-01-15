@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Spinner } from "reactstrap";
+import { connect } from "react-redux";
 import TrContainer from "../../components/TrContainer";
 import Slider, { Range } from "rc-slider";
+import BaseComponent from "../BaseComponent";
 
-class Welcome extends Component {
+class Welcome extends BaseComponent {
   constructor(params) {
     super(params);
     this.state = {
-      level: 2
+      difficulty: 1
     };
   }
+
   render() {
-    const { level } = this.state;
+    const { difficulty } = this.state;
     return (
       <TrContainer>
         <div
@@ -30,25 +33,25 @@ class Welcome extends Component {
           }}
         >
           <div style={{ fontSize: 30 }} className="pr-5">
-            Level:
+            difficulty:
           </div>
           <div style={{ fontSize: 70 }}>
-            {level === 1 ? "🙂" : level === 2 ? "🥴" : "🥵"}
+            {difficulty === 1 ? "🙂" : difficulty === 2 ? "🥴" : "🥵"}
           </div>
           <div style={{ fontSize: 30, color: "orange" }} className="pl-2">
             {" "}
-            {level === 1 ? "Easy" : level === 2 ? "Medium" : "Hard"}
+            {difficulty === 1 ? "Easy" : difficulty === 2 ? "Medium" : "Hard"}
           </div>
         </Row>
 
         <div>
           {" "}
           <Slider
-            defaultValue={level}
+            defaultValue={difficulty}
             min={1}
             max={3}
-            onChange={level => {
-              this.setState({ level });
+            onChange={difficulty => {
+              this.setState({ difficulty });
             }}
           />
         </div>
@@ -57,10 +60,13 @@ class Welcome extends Component {
           className="clickable text-center"
           style={{ fontSize: 70, color: "red", fontWeight: "bold" }}
           onClick={() => {
+            this.dispatchAction(this.$().GET_QUESTIONS_REQUEST, {
+              difficulty: difficulty
+            });
             this.props.history.push({
               pathname: "/dashboard",
               state: {
-                difficulty: level,
+                difficulty: difficulty,
                 activeQuestionIndex: 0,
                 score: 0
               }
@@ -71,7 +77,7 @@ class Welcome extends Component {
             style={{ margin: 40 }}
             src="/play-now.png"
             height={"120"}
-            width={"500"}
+            width={"300"}
           ></img>
         </div>
       </TrContainer>
@@ -79,4 +85,4 @@ class Welcome extends Component {
   }
 }
 
-export default Welcome;
+export default connect()(Welcome);

@@ -4,8 +4,9 @@ import TimeLottie from "../../assets/times-up.json";
 import { Container } from "reactstrap";
 import TrContainer from "../../components/TrContainer";
 import TrStepper from "../../components/TrStepper";
+import BaseComponent from "../BaseComponent.js";
 
-class TimesUp extends Component {
+class TimesUp extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {

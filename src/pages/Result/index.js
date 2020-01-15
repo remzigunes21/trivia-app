@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Container, Row, Col, Spinner } from "reactstrap";
 import TrContainer from "../../components/TrContainer";
 import TrStepper from "../../components/TrStepper";
+import BaseComponent from "../BaseComponent";
 
-class Result extends Component {
+class Result extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -72,14 +73,7 @@ class Result extends Component {
                   justifyContent: "space-between"
                 }}
               >
-                SCORE:{" "}
-                {time >= 13
-                  ? score + 100
-                  : time >= 8
-                  ? score + 75
-                  : time >= 5
-                  ? score + 50
-                  : score}
+                SCORE: {score}
               </div>
 
               <div
@@ -160,6 +154,7 @@ class Result extends Component {
                       : () => {
                           const {
                             score,
+
                             activeQuestionIndex,
                             difficulty
                           } = this.state;
