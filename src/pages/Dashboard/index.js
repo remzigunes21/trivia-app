@@ -286,7 +286,7 @@ class Dashboard extends Component {
   }
 
   onClick(answer) {
-    const { activeQuestionIndex, data, score } = this.state;
+    const { activeQuestionIndex, data, score, time } = this.state;
     const { difficulty } = this.props.location.state;
 
     this.props.history.push({
@@ -295,7 +295,8 @@ class Dashboard extends Component {
         isCorrect: data[activeQuestionIndex].correct_answer === answer,
         activeQuestionIndex: activeQuestionIndex + 1,
         score: score + 50,
-        difficulty
+        difficulty,
+        time
       }
     });
   }

@@ -10,7 +10,8 @@ class Result extends Component {
       score: null,
       activeQuestionIndex: null,
       isCorrect: null,
-      isLastQuestion: false
+      isLastQuestion: false,
+      time: null
     };
   }
 
@@ -22,7 +23,8 @@ class Result extends Component {
         score,
         activeQuestionIndex,
         isCorrect,
-        difficulty
+        difficulty,
+        time
       } = this.props.location.state;
 
       this.setState({
@@ -30,7 +32,8 @@ class Result extends Component {
         difficulty,
         activeQuestionIndex,
         isCorrect,
-        isLastQuestion: activeQuestionIndex === 10
+        isLastQuestion: activeQuestionIndex === 10,
+        time
       });
     }
   }
@@ -39,7 +42,8 @@ class Result extends Component {
       score,
       isLastQuestion,
       activeQuestionIndex,
-      isCorrect
+      isCorrect,
+      time
     } = this.state;
 
     if (isCorrect) {
@@ -68,7 +72,28 @@ class Result extends Component {
                   justifyContent: "space-between"
                 }}
               >
-                SCORE: {score}
+                SCORE:{" "}
+                {time >= 13
+                  ? score + 100
+                  : time >= 8
+                  ? score + 75
+                  : time >= 5
+                  ? score + 50
+                  : score}
+              </div>
+
+              <div
+                className="pl-4 pr-4 ml-5"
+                style={{
+                  backgroundColor: "white",
+                  borderRadius: 20,
+                  height: 35,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between"
+                }}
+              >
+                Remaing Time: {time}
               </div>
             </div>
 
@@ -182,7 +207,7 @@ class Result extends Component {
                   justifyContent: "space-between"
                 }}
               >
-                {score}
+                SCORE: {score}
               </div>
             </div>
 
