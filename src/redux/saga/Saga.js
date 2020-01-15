@@ -9,7 +9,6 @@ const $A = function(type, payload) {
 const getQuestionsDataSaga = function*(action) {
   try {
     const { difficulty } = action.payload;
-    console.log("TCL: difficulty", difficulty);
 
     if (difficulty) {
       let difficultyText = "";
@@ -24,7 +23,6 @@ const getQuestionsDataSaga = function*(action) {
       }
 
       const response = yield call(Api.getQuestions, difficultyText);
-      console.log("TCL: response", response);
       yield put(
         $A($.GET_QUESTIONS_SUCCESS, { data: response.data.results, difficulty })
       );
