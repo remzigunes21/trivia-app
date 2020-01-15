@@ -59,7 +59,11 @@ class Welcome extends Component {
           onClick={() => {
             this.props.history.push({
               pathname: "/dashboard",
-              state: { difficulty: level, activeQuestionIndex: 0, score: 0 }
+              state: {
+                difficulty: level,
+                activeQuestionIndex: 0,
+                score: 0
+              }
             });
           }}
         >

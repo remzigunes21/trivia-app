@@ -5,6 +5,7 @@ import Welcome from "../pages/Welcome";
 import Correct from "../components/AnswerCorrect";
 import Dashboard from "../pages/Dashboard";
 import Result from "../pages/Result";
+import TimesUp from "../pages/TimesUp";
 
 const Routers = () => {
   return (
@@ -15,6 +16,7 @@ const Routers = () => {
             <Route path="/" exact component={Welcome} />
             <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/result" exact component={Result} />
+            <Route path="/times-up" exact component={TimesUp} />
             {/*   <Route path="/questions" exact component={Questions} />
             <Route path="/times-up" exact component={TimesUp} /> */}
             {/* <Route path="/answer" exact component={StreamsCreate} />

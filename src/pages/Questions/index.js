@@ -42,9 +42,7 @@ class Questions extends Component {
 
     this.state = {
       data: [],
-      easyData: [],
-      mediumData: [],
-      hardData: [],
+
       activeQuestionIndex: 0,
       time: 15,
       score: 0,
@@ -199,6 +197,7 @@ class Questions extends Component {
   //     this.setState({ time: this.state.time - 1 });
   //   } else {
   //     clearInterval(this.timer);
+
   //     this.props.history.push("/times-up");
   //   }
   // };

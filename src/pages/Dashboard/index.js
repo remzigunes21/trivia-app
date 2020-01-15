@@ -30,7 +30,8 @@ class Dashboard extends Component {
     this.state = {
       data: [],
       answersRandoms: [],
-      score: null
+      score: null,
+      time: 15
     };
   }
 
@@ -54,7 +55,7 @@ class Dashboard extends Component {
 
       this.getHistoryState();
 
-      this.timer = setInterval(this.startTimer, 2000);
+      this.timer = setInterval(this.startTimer, 1000);
     }
   }
 
@@ -169,7 +170,7 @@ class Dashboard extends Component {
                 justifyContent: "space-between"
               }}
             >
-              TIME 12323
+              Remaing Time : {this.state.time}
             </div>
           </div>
           <Container fluid>
@@ -298,6 +299,15 @@ class Dashboard extends Component {
       }
     });
   }
+
+  startTimer = () => {
+    if (this.state.time > 0) {
+      this.setState({ time: this.state.time - 1 });
+    } else {
+      clearInterval(this.timer);
+      this.props.history.push("/times-up");
+    }
+  };
 }
 
 export default Dashboard;
