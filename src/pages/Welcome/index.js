@@ -67,7 +67,12 @@ class Welcome extends Component {
             });
           }}
         >
-          Play
+          <img
+            style={{ margin: 40 }}
+            src="/play-now.png"
+            height={"120"}
+            width={"500"}
+          ></img>
         </div>
       </TrContainer>
     );
