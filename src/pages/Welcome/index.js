@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import { Container, Row, Col, Spinner } from "reactstrap";
-import { connect } from "react-redux";
+import React from "react";
+import { Row } from "reactstrap";
 import TrContainer from "../../components/TrContainer";
-import Slider, { Range } from "rc-slider";
+import Slider from "rc-slider";
 import BaseComponent from "../BaseComponent";
 
 class Welcome extends BaseComponent {
   constructor(params) {
     super(params);
     this.state = {
-      difficulty: 1
+      difficulty: 2
     };
   }
 
   render() {
     const { difficulty } = this.state;
+    //difficulty selection
     return (
       <TrContainer>
         <div
@@ -60,13 +60,10 @@ class Welcome extends BaseComponent {
           className="clickable text-center"
           style={{ fontSize: 70, color: "red", fontWeight: "bold" }}
           onClick={() => {
-            this.dispatchAction(this.$().GET_QUESTIONS_REQUEST, {
-              difficulty: difficulty
-            });
             this.props.history.push({
               pathname: "/dashboard",
               state: {
-                difficulty: difficulty,
+                difficulty,
                 activeQuestionIndex: 0,
                 score: 0
               }
@@ -85,4 +82,4 @@ class Welcome extends BaseComponent {
   }
 }
 
-export default connect()(Welcome);
+export default Welcome;

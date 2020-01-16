@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Lottie from "react-lottie";
 import TimeLottie from "../../assets/times-up.json";
 import { Container } from "reactstrap";
@@ -115,7 +115,3 @@ class TimesUp extends BaseComponent {
 }
 
 export default TimesUp;
-
-{
-  /* <Lottie options={defaultOptions} height={400} width={400} />; */
-}

@@ -1,12 +1,12 @@
 import React from "react";
 import TrStepper from "../../components/TrStepper";
 import { Container, Row } from "reactstrap";
-import { connect } from "react-redux";
 import TrContainer from "../../components/TrContainer";
 import BaseComponent from "../BaseComponent";
 import Time from "../../components/Time";
 
 function shuffle(array) {
+  //Random answers
   var currentIndex = array.length,
     temporaryValue,
     randomIndex;
@@ -30,7 +30,6 @@ class Dashboard extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {
-      questions: [],
       data: [],
       answersRandoms: [],
       score: null
@@ -38,17 +37,11 @@ class Dashboard extends BaseComponent {
   }
 
   componentDidMount() {
-    const { questions } = this.props;
-
-    this.setState({ questions: questions });
-
-    console.log("TCL: Dashboard -> componentDidMount -> questions", questions);
-
     if ([undefined, null].includes(this.props.location.state)) {
       this.props.history.push("/");
     } else {
       const { difficulty, activeQuestionIndex } = this.props.location.state;
-
+      //API selection according to difficulty
       if (difficulty) {
         if (difficulty === 1) {
           this.getEasyData(activeQuestionIndex);
@@ -57,7 +50,7 @@ class Dashboard extends BaseComponent {
         } else this.getHardData(activeQuestionIndex);
       }
 
-      this.getHistoryState();
+      this.getHistoryState(); //history checked
     }
   }
 
@@ -126,12 +119,16 @@ class Dashboard extends BaseComponent {
       );
   };
 
+  decodeHtml = text => {
+    let txt = document.createElement("textarea");
+    txt.innerHTML = text;
+    return txt.value;
+  };
+
   render() {
     const { activeQuestionIndex, data, answersRandoms } = this.state;
 
     const { score } = this.props.location.state;
-
-    const { questions } = this.props;
 
     if (!data.length)
       return (
@@ -143,7 +140,7 @@ class Dashboard extends BaseComponent {
     return (
       <Container fluid style={{ backgroundColor: "#001641" }} className="app">
         <TrStepper activeStep={activeQuestionIndex}></TrStepper>
-        <div>{data[activeQuestionIndex].correct_answer}</div>
+        <div>{this.decodeHtml(data[activeQuestionIndex].correct_answer)}</div>
         <TrContainer>
           <div
             style={{
@@ -175,7 +172,7 @@ class Dashboard extends BaseComponent {
                 src="/manquestion.png"
                 height={"300"}
                 width={"300"}
-              ></img>
+              />
               <div
                 style={{
                   backgroundColor: "white",
@@ -192,7 +189,7 @@ class Dashboard extends BaseComponent {
                   paddingRight: 20
                 }}
               >
-                {data[activeQuestionIndex].question}
+                {this.decodeHtml(data[activeQuestionIndex].question)}
               </div>
             </Row>
           </Container>
@@ -217,7 +214,7 @@ class Dashboard extends BaseComponent {
                 justifyContent: "center"
               }}
             >
-              {answersRandoms[0]}
+              {this.decodeHtml(answersRandoms[0])}
             </div>
             <div
               onClick={() => this.onClick(answersRandoms[1])}
@@ -232,7 +229,7 @@ class Dashboard extends BaseComponent {
                 justifyContent: "center"
               }}
             >
-              {answersRandoms[1]}
+              {this.decodeHtml(answersRandoms[1])}
             </div>
           </div>
 
@@ -256,7 +253,7 @@ class Dashboard extends BaseComponent {
                 justifyContent: "center"
               }}
             >
-              {answersRandoms[2]}
+              {this.decodeHtml(answersRandoms[2])}
             </div>
             <div
               onClick={() => this.onClick(answersRandoms[3])}
@@ -272,7 +269,7 @@ class Dashboard extends BaseComponent {
                 justifyContent: "center"
               }}
             >
-              {answersRandoms[3]}
+              {this.decodeHtml(answersRandoms[3])}
             </div>
           </div>
         </TrContainer>
@@ -281,9 +278,8 @@ class Dashboard extends BaseComponent {
   }
 
   onClick(answer) {
-    const time = this.timeRef.getCurrentTime();
+    const time = this.timeRef.getCurrentTime(); // <Time /> from take ref
 
-    console.log("TCL: Dashboard -> onClick -> time", time);
     const { activeQuestionIndex, data, score } = this.state;
     const { difficulty } = this.props.location.state;
 
@@ -292,6 +288,7 @@ class Dashboard extends BaseComponent {
       state: {
         isCorrect: data[activeQuestionIndex].correct_answer === answer,
         activeQuestionIndex: activeQuestionIndex + 1,
+        //Point system - User earns points with respect to remaining time.
         score:
           time >= 13
             ? score + 100
@@ -307,8 +304,4 @@ class Dashboard extends BaseComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  questions: state.questions.questions
-});
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

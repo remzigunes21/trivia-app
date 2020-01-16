@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Container, Row, Col, Spinner } from "reactstrap";
+import React from "react";
+import { Container } from "reactstrap";
 import TrContainer from "../../components/TrContainer";
 import TrStepper from "../../components/TrStepper";
 import BaseComponent from "../BaseComponent";
@@ -18,6 +18,7 @@ class Result extends BaseComponent {
 
   componentDidMount() {
     if ([undefined, null].includes(this.props.location.state)) {
+      //url block
       this.props.history.push("/");
     } else {
       const {
