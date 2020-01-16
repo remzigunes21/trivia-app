@@ -19,6 +19,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ***bootstrap and reactstrap*** => Css design
 
 
+## Pages of the project
+**Welcome page
+**Dashboard(questions) page
+** Times-up page
+**Results page
+
 ## Available Scripts
 
 In the project directory, you can run:
