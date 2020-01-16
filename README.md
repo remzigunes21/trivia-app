@@ -1,18 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## This project use 
-__Difficulty Selection
-__Usage of Lottie Animation(https://github.com/chenqingspring/react-lottie - https://lottiefiles.com/)
+__***Difficulty Selection
+__***Usage of Lottie Animation(https://github.com/chenqingspring/react-lottie - https://lottiefiles.com/)
 __***Timer - User has 15 seconds to answer the question, if user does not answer the question in given time, user should be directed to a page which states that time's up.***
 __***Point system** - User earns points with respect to remaining time.***
 ## quizshow21 application's final version on Heroku  platform. 
 (http://quizshow21.herokuapp.com/)
 
 ## This Project additional libraries used
-***"rc-slider": "^8.7.1"** =>Selecting the level on the Home page used
-***react-emoji-render** => Selecting level on the Homepage according to emoji used
-***"react-lottie": "^1.2.3"** =>Times-up page was also used for animation
-***bootstrap and reactstrap** => Css design
+***"rc-slider": "^8.7.1"*** =>Selecting the level on the Home page used
+***react-emoji-render*** => Selecting level on the Homepage according to emoji used
+***"react-lottie": "^1.2.3"*** =>Times-up page was also used for animation
+***bootstrap and reactstrap*** => Css design
 
 
 ## Available Scripts
