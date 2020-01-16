@@ -26,6 +26,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 3.Times-up page
 4.Results page
 
+
+![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
