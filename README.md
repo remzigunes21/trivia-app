@@ -2,13 +2,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## This project 
 
-***The user can select the level on the home page. The contest also has 10 questions. If the user answers these 10 questions correctly, he wins the competition. If he gives the wrong answer, the game is over. If the user cannot answer the question in the desired time, the game is over.
+* **The user can select the level on the home page. The contest also has 10 questions. If the user answers these 10 questions correctly, he wins the competition. If he gives the wrong answer, the game is over. If the user cannot answer the question in the desired time, the game is over.
 
 
-***Difficulty Selection
-***Usage of Lottie Animation(https://github.com/chenqingspring/react-lottie - https://lottiefiles.com/)
-***Timer - User has 15 seconds to answer the question, if user does not answer the question in given time, user should be directed to a page which states that time's up.***
-***Point system** - User earns points with respect to remaining time.
+* **Difficulty Selection
+* **Usage of Lottie Animation(https://github.com/chenqingspring/react-lottie - https://lottiefiles.com/)
+* **Timer - User has 15 seconds to answer the question, if user does not answer the question in given time, user should be directed to a page which states that time's up.***
+* **Point system** - User earns points with respect to remaining time.
 
 # quizshow21 application's final version on Heroku  platform
 (http://quizshow21.herokuapp.com/)
