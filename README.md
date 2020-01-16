@@ -1,29 +1,35 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## This project use 
+## This project 
 
-***The user can select the level on the home page. The contest also has 10 questions. If the user answers these 10 questions correctly, he wins the competition. If he gives the wrong answer, the game is over. If the user cannot answer the question in the desired time, the game is over.
+* **The user can select the level on the home page. The contest also has 10 questions. If the user answers these 10 questions correctly, he wins the competition. If he gives the wrong answer, the game is over. If the user cannot answer the question in the desired time, the game is over.
 
 
-***Difficulty Selection
-***Usage of Lottie Animation(https://github.com/chenqingspring/react-lottie - https://lottiefiles.com/)
-***Timer - User has 15 seconds to answer the question, if user does not answer the question in given time, user should be directed to a page which states that time's up.***
-***Point system** - User earns points with respect to remaining time.
-## quizshow21 application's final version on Heroku  platform. 
+* **Difficulty Selection
+* **Usage of Lottie Animation(https://github.com/chenqingspring/react-lottie - https://lottiefiles.com/)
+* **Timer - User has 15 seconds to answer the question, if user does not answer the question in given time, user should be directed to a page which states that time's up.***
+* **Point system** - User earns points with respect to remaining time.
+
+# quizshow21 application's final version on Heroku  platform
 (http://quizshow21.herokuapp.com/)
 
 ## This Project additional libraries used
-***"rc-slider": "^8.7.1"*** =>Selecting the level on the Home page used
-***react-emoji-render*** => Selecting level on the Homepage according to emoji used
-***"react-lottie": "^1.2.3"*** =>Times-up page was also used for animation
+* **"rc-slider": "^8.7.1"*** => Selecting the level on the Home page used
+* **react-emoji-render*** => Selecting level on the Homepage according to emoji used
+* **"react-lottie": "^1.2.3"*** =>Times-up page was also used for animation
 ***bootstrap and reactstrap*** => Css design
 
 
 ## Pages of the project
-**Welcome page
-**Dashboard(questions) page
-** Times-up page
-**Results page
+1.Welcome page
+2.Dashboard(questions) page
+3.Times-up page
+4.Results page
+
+
+![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url)
+
 
 ## Available Scripts
 
