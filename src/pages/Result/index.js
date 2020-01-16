@@ -203,7 +203,14 @@ class Result extends BaseComponent {
                   justifyContent: "space-between"
                 }}
               >
-                SCORE: {score}
+                SCORE:{" "}
+                {time >= 13
+                  ? score - 100
+                  : time >= 8
+                  ? score - 75
+                  : time >= 5
+                  ? score - 50
+                  : 0}
               </div>
             </div>
 
