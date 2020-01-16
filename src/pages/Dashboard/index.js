@@ -140,7 +140,7 @@ class Dashboard extends BaseComponent {
     return (
       <Container fluid style={{ backgroundColor: "#001641" }} className="app">
         <TrStepper activeStep={activeQuestionIndex}></TrStepper>
-        <div>{this.decodeHtml(data[activeQuestionIndex].correct_answer)}</div>
+
         <TrContainer>
           <div
             style={{
