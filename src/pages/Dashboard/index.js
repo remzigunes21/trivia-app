@@ -38,7 +38,7 @@ class Dashboard extends BaseComponent {
 
   componentDidMount() {
     if ([undefined, null].includes(this.props.location.state)) {
-      this.props.history.push("/");
+      this.$history("/");
     } else {
       const { difficulty, activeQuestionIndex } = this.props.location.state;
       //API selection according to difficulty
@@ -283,7 +283,7 @@ class Dashboard extends BaseComponent {
     const { activeQuestionIndex, data, score } = this.state;
     const { difficulty } = this.props.location.state;
 
-    this.props.history.push({
+    this.$history({
       pathname: "/result",
       state: {
         isCorrect: data[activeQuestionIndex].correct_answer === answer,

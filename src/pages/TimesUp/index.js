@@ -102,7 +102,7 @@ class TimesUp extends BaseComponent {
                   color: "#DA3B7D",
                   fontWeight: "bolder"
                 }}
-                onClick={() => this.props.history.push("/")}
+                onClick={() => this.$history("/")}
               >
                 TRY AGAIN
               </div>

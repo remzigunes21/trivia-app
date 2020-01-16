@@ -25,7 +25,7 @@ class Time extends BaseComponent {
       this.setState({ time: this.state.time - 1 });
     } else {
       clearInterval(this.timer);
-      this.props.history.push("/times-up");
+      this.$history("/times-up");
     }
   };
 

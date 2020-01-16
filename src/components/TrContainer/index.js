@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Spinner } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
 class TrContainer extends Component {
   render() {

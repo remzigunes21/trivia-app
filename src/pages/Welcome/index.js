@@ -60,7 +60,7 @@ class Welcome extends BaseComponent {
           className="clickable text-center"
           style={{ fontSize: 70, color: "red", fontWeight: "bold" }}
           onClick={() => {
-            this.props.history.push({
+            this.$history({
               pathname: "/dashboard",
               state: {
                 difficulty,

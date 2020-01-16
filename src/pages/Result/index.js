@@ -19,7 +19,7 @@ class Result extends BaseComponent {
   componentDidMount() {
     if ([undefined, null].includes(this.props.location.state)) {
       //url block
-      this.props.history.push("/");
+      this.$history("/");
     } else {
       const {
         score,
@@ -151,7 +151,7 @@ class Result extends BaseComponent {
                   }}
                   onClick={
                     isLastQuestion
-                      ? () => this.props.history.push("/")
+                      ? () => this.$history("/")
                       : () => {
                           const {
                             score,
@@ -160,7 +160,7 @@ class Result extends BaseComponent {
                             difficulty
                           } = this.state;
 
-                          this.props.history.push({
+                          this.$history({
                             pathname: "/dashboard",
                             state: {
                               difficulty,
@@ -271,7 +271,7 @@ class Result extends BaseComponent {
                     color: "#DA3B7D",
                     fontWeight: "bolder"
                   }}
-                  onClick={() => this.props.history.push("/")}
+                  onClick={() => this.$history("/")}
                 >
                   TRY AGAIN
                 </div>
