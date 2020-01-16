@@ -15,6 +15,14 @@ class TimesUp extends BaseComponent {
     };
   }
 
+  componentDidMount() {
+    const { score } = this.props.location.state;
+    if (!score) {
+      return null;
+    }
+    this.setState({ score });
+  }
+
   render() {
     const defaultOptions = {
       loop: true,
@@ -46,7 +54,7 @@ class TimesUp extends BaseComponent {
                 justifyContent: "space-between"
               }}
             >
-              {score}
+              Score: {score}
             </div>
           </div>
 

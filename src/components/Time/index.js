@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
 import BaseComponent from "../../pages/BaseComponent";
 class Time extends BaseComponent {
@@ -21,11 +21,17 @@ class Time extends BaseComponent {
   }
 
   startTimer = () => {
+    const { score } = this.props;
     if (this.state.time > 0) {
       this.setState({ time: this.state.time - 1 });
     } else {
       clearInterval(this.timer);
-      this.$history("/times-up");
+      this.$history({
+        pathname: "/times-up",
+        state: {
+          score
+        }
+      });
     }
   };
 

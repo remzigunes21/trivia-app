@@ -74,7 +74,7 @@ class Welcome extends BaseComponent {
             style={{ margin: 40 }}
             src="/play-now.png"
             height={"120"}
-            width={"300"}
+            width={"325"}
           ></img>
         </div>
       </TrContainer>

@@ -163,7 +163,7 @@ class Dashboard extends BaseComponent {
               SCORE: {score}
             </div>
 
-            <Time onRef={ref => (this.timeRef = ref)} />
+            <Time onRef={ref => (this.timeRef = ref)} score={score} />
           </div>
           <Container fluid>
             <Row>
