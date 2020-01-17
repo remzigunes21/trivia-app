@@ -11,14 +11,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * **Point system** - User earns points with respect to remaining time.
 
 # quizshow21 application's final version on Heroku and Netlify  platform
-1.*heroku: (http://quizshow21.herokuapp.com/)
-2.*Netlify: (https://quiz-game.netlify.com/)
+* heroku: (http://quizshow21.herokuapp.com/)
+* Netlify: (https://quiz-game.netlify.com/)
 
 ## This Project additional libraries used
 * **"rc-slider": "^8.7.1"*** => Selecting the level on the Home page used
 * **react-emoji-render*** => Selecting level on the Homepage according to emoji used
 * **"react-lottie": "^1.2.3"*** =>Times-up page was also used for animation
-***bootstrap and reactstrap*** => Css design
+* **bootstrap and reactstrap*** => Css design
 
 
 ## Pages of the project
