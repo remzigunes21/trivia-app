@@ -10,8 +10,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * **Timer - User has 15 seconds to answer the question, if user does not answer the question in given time, user should be directed to a page which states that time's up.***
 * **Point system** - User earns points with respect to remaining time.
 
-# quizshow21 application's final version on Heroku  platform
-(http://quizshow21.herokuapp.com/)
+# quizshow21 application's final version on Heroku and Netlify  platform
+1.*heroku: (http://quizshow21.herokuapp.com/)
+2.*Netlify: (https://quiz-game.netlify.com/)
 
 ## This Project additional libraries used
 * **"rc-slider": "^8.7.1"*** => Selecting the level on the Home page used
